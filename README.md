@@ -62,11 +62,11 @@ At the core, we will be analyzing various recipes to understand the ingredients,
 ### Approach
 First, we will be collecting and analyzing various recipes to understand the attributes like names, ingredients and cuisines. We will have to re-process the recipes by using NLP techniques to drop unnecessary information and format the data.
 
-Next, the system will then collect user input. The input will include their current choice of cuisine, ingredients, course, etc. Then the system would suggest various recipes, similar ingredients and complementary ingredients provide users with the functionality of identifying substitutable ingredients and alternate recipes.
+Next, the system will collect user input. The input will include their current choice of cuisine, ingredients, course, etc. Then the system would suggest various recipes, similar ingredients and complementary ingredients provide users with the functionality of identifying substitutable ingredients and alternate recipes.
 
 To suggest recipes we can use Term Frequency Inverse Document Frequency (TF-IDF) and Cosine Similarity to recommend the most similar recipes, we pass the results of the TF-IDF model for every recipe and use the similarities function - MatrixSimilarity, to get the cosine similarity between recipes. Also, we can use the Jaccard String Similarity model to compute the similarity of two recipe names based on the words. For all the recipes in the dataset, we can calculate the string similarity for each pair of recipes and stored the top 8 similar recommendations for each recipe in the Database.
 
-For ingredient recommender for substitution in a recipe, as a first step, we check the related ingredient list obtained from the dataset. If a related ingredient is not found, the second step for the ingredient uses the Word2Vec model to provide an alternative ingredient. Further study is required to come up with an appropriate solution.
+For ingredient recommender for substitution in a recipe, as a first step, we check the related ingredient list obtained from the dataset. If a similar ingredient could not be found, then we could use the Word2Vec model to provide a substitute. However, more study is required to come up with an appropriate solution.
 
 ### Persona
 Anyone who wants to cook can be considered as the target audience of this project.  
