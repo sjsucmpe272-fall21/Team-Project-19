@@ -77,7 +77,9 @@ def updateStudent(request):
     if request.method == 'POST':
         context = {}
         try:
-            student = Student.objects.get(registration_id = request.POST['prev_reg_id'])
+            print(request.POST)
+            student = Student.objects.get(registration_id = request.POST['registration_id'])
+            print(student.firstname)
             updateStudentForm = CreateStudentForm(data = request.POST, files=request.FILES, instance = student)
             if updateStudentForm.is_valid():
                 updateStudentForm.save()

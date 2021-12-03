@@ -11,7 +11,7 @@ def Recognizer(details):
 	known_face_names = []
 
 	base_dir = os.path.dirname(os.path.abspath(__file__))
-	base_dir = "D:/Documents/CMPE272/Github/Recognition_Systemv2/"#"/home/haard/Documents/Semester_1/272/Project/Face_Verification_based_Attendance_system/"
+	base_dir = "/home/haard/Documents/Semester_1/272/Project/VizzAtt/"
 	image_dir = os.path.join(base_dir,"{}/{}/{}/{}/{}".format('static','images','Student_Images',details['branch'],details['section']))
 	names = []
 
