@@ -29,7 +29,7 @@ def home(request):
             messages.success(request, 'Student ' + name + ' was successfully added.')
             return redirect('home')
         else:
-            messages.error(request, 'Student with Registration Id '+request.POST['registration_id']+' already exists.')
+            messages.error(request, 'Student with ID '+request.POST['registration_id']+' already exists.')
             return redirect('home')
 
     context = {'studentForm':studentForm}
@@ -100,7 +100,7 @@ def takeAttendence(request):
             'faculty':request.user.faculty
             }
         if Attendence.objects.filter(date = str(date.today()),branch = details['branch'], year = details['year'], section = details['section'],period = details['period']).count() != 0 :
-            messages.error(request, "Attendence already recorded.")
+            messages.error(request, "Attendance already recorded.")
             return redirect('home')
         else:
             students = Student.objects.filter(branch = details['branch'], year = details['year'], section = details['section'])
@@ -127,7 +127,7 @@ def takeAttendence(request):
                     attendence.save()
             attendences = Attendence.objects.filter(date = str(date.today()),branch = details['branch'], year = details['year'], section = details['section'],period = details['period'])
             context = {"attendences":attendences, "ta":True}
-            messages.success(request, "Attendence taking Success")
+            messages.success(request, "Attendance recorded successfully.")
             return render(request, 'attendance.html', context)        
     context = {}
     return render(request, 'home.html', context)
