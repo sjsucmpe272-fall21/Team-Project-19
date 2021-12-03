@@ -103,7 +103,6 @@ class Migration(migrations.Migration):
                                                         ('ISE 201','ISE 201'),
                                                         ('ISE 244','ISE 244')
                                                     ], max_length=100, null=True)),
-                ('year', models.CharField(choices=[('1', '1'), ('2', '2'), ('3', '3'), ('4', '4')], max_length=100, null=True)),
                 ('section', models.CharField(choices=[
                                                         ('01','01'),
                                                         ('02','02'),

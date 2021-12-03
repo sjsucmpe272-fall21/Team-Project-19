@@ -20,11 +20,6 @@ class Migration(migrations.Migration):
             name='section',
             field=models.CharField(max_length=200, null=True),
         ),
-        migrations.AddField(
-            model_name='attendence',
-            name='year',
-            field=models.CharField(max_length=200, null=True),
-        ),
         migrations.AlterField(
             model_name='attendence',
             name='status',

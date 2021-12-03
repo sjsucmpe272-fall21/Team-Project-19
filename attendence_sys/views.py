@@ -94,16 +94,15 @@ def takeAttendence(request):
     if request.method == 'POST':
         details = {
             'branch':request.POST['branch'],
-            'year': request.POST['year'],
             'section':request.POST['section'],
             'period':request.POST['period'],
             'faculty':request.user.faculty
             }
-        if Attendence.objects.filter(date = str(date.today()),branch = details['branch'], year = details['year'], section = details['section'],period = details['period']).count() != 0 :
+        if Attendence.objects.filter(date = str(date.today()),branch = details['branch'], section = details['section'],period = details['period']).count() != 0 :
             messages.error(request, "Attendence already recorded.")
             return redirect('home')
         else:
-            students = Student.objects.filter(branch = details['branch'], year = details['year'], section = details['section'])
+            students = Student.objects.filter(branch = details['branch'], section = details['section'])
             names = Recognizer(details)
             for student in students:
                 if str(student.registration_id) in names:
@@ -111,7 +110,6 @@ def takeAttendence(request):
                         Student_ID = str(student.registration_id), 
                         period = details['period'], 
                         branch = details['branch'], 
-                        year = details['year'], 
                         section = details['section'],
                         status = 'Present'
                     )
@@ -121,11 +119,10 @@ def takeAttendence(request):
                         Student_ID = str(student.registration_id), 
                         period = details['period'],
                         branch = details['branch'], 
-                        year = details['year'], 
                         section = details['section']
                     )
                     attendence.save()
-            attendences = Attendence.objects.filter(date = str(date.today()),branch = details['branch'], year = details['year'], section = details['section'],period = details['period'])
+            attendences = Attendence.objects.filter(date = str(date.today()),branch = details['branch'], section = details['section'],period = details['period'])
             context = {"attendences":attendences, "ta":True}
             messages.success(request, "Attendence taking Success")
             return render(request, 'attendance.html', context)        
