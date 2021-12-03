@@ -1,0 +1,45 @@
+{%  extends 'main.html' %}
+{% block content %}
+
+<style>
+	.profile-pic{
+		max-width: 300px;
+		max-height:500px;
+		width: 65%;
+        height: 30%;
+		margin: 0 auto;
+		/* border-radius: 50%; */
+		border-radius: 50rem;
+	}
+</style>
+
+<br>
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-5">
+		<div class="card card-body">
+			
+			<form method="POST" action="" enctype="multipart/form-data">
+				{% csrf_token %}
+				{{form.as_p}}
+		
+			<input class="btn btn-primary" type="submit" name="Update Information" style="border-radius: 5rem; width: 200px; margin-left: 9rem; padding:0.75rem; margin-top: 0.5rem;">
+			</form>
+		</div>
+	</div>
+	<div class="col-md-1"></div>
+	<div class="col-md-3.5">
+		<!-- <div class="card card-body">
+			<a class="btn btn-warning" href="{% url 'home' %}"> &#8592; Back to Home</a>
+			<hr>
+			<h3 style="text-align: center">Faculty Profile Pic</h3>
+			<hr> -->
+			<img class="img-responsive profile-pic" src="{{request.user.faculty.profile_pic.url}}" >
+		
+		</div>
+	</div>
+</div>
+
+
+
+{% endblock %}

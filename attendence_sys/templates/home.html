@@ -1,0 +1,540 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="container">
+    {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% else %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endif %}
+    {% endfor %}
+    <div class="row">
+        <div class="col-md-6" style="margin-top: 20px;">
+            <div class="card card-body" style="border-radius: 1rem; border-color: black; border-style: ridge;">
+                <center><h3>ADD NEW STUDENT</h3></center>
+                <hr/> 
+                <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label"><b>First Name</b></label>
+                                {{ studentForm.firstname }}
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label"><b>Last Name</b></label>
+                                {{ studentForm.lastname }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label"><b>SJSU ID</b></label>
+                                {{ studentForm.registration_id }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="sel1"><b>Select Course</b></label>
+                                {{ studentForm.branch }}
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="sel1"><b>Select Section</b></label>
+                                {{ studentForm.section }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- <div class="col-md-4"></div> -->
+                        <div class="col-md-6">
+                            <div class="form-group" style="border: none;">
+                                <label class="control-label"><b>Upload Profile Picture</b></label>
+                                {{ studentForm.profile_pic }}
+                            </div>
+                        </div>
+                        <div class="col-md-3"></div>
+                    </div>
+                    <br> 
+                    <button type="submit" class="btn btn-block btn-dark" style="border-radius: 5rem; width: 200px; margin-left: 10rem; padding:0.75rem; margin-top: 0.5rem;">SUBMIT</button>    
+                </form>
+            </div>
+        </div>
+
+
+        <div class="col-md-6" style="margin-top: 20px;">
+            <div class="card card-body" style="border-radius: 1rem; border-color: black; border-style: ridge;">
+                <center><h3>UPDATE STUDENT INFORMATION</h3></center>
+                <hr/>
+                <form class="form-horizontal" action="{% url 'updateStudentRedirect' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label class="control-label"><b>SJSU ID</b></label>
+                        <input name="reg_id" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="sel1"><b>Select Course</b></label>
+                        <select name='branch' class="form-control" id="sel1">
+                            <option value="CMPE 200">CMPE 200</option>
+                            <option value="CMPE 202">CMPE 202</option>
+                            <option value="CMPE 203">CMPE 203</option>
+                            <option value="CMPE 206">CMPE 206</option>
+                            <option value="CMPE 207">CMPE 207</option>
+                            <option value="CMPE 208">CMPE 208</option>
+                            <option value="CMPE 209">CMPE 209</option>
+                            <option value="CMPE 212">CMPE 212</option>
+                            <option value="CMPE 213">CMPE 213</option>
+                            <option value="CMPE 214">CMPE 214</option>
+                            <option value="CMPE 217">CMPE 217</option>
+                            <option value="CMPE 219">CMPE 219</option>
+                            <option value="CMPE 220">CMPE 220</option>
+                            <option value="CMPE 221">CMPE 221</option>
+                            <option value="CMPE 225">CMPE 225</option>
+                            <option value="CMPE 226">CMPE 226</option>
+                            <option value="CMPE 227">CMPE 227</option>
+                            <option value="CMPE 232">CMPE 232</option>
+                            <option value="CMPE 234">CMPE 234</option>
+                            <option value="CMPE 235">CMPE 235</option>
+                            <option value="CMPE 236">CMPE 236</option>
+                            <option value="CMPE 237">CMPE 237</option>
+                            <option value="CMPE 238">CMPE 238</option>
+                            <option value="CMPE 239">CMPE 239</option>
+                            <option value="CMPE 240">CMPE 240</option>
+                            <option value="CMPE 241">CMPE 241</option>
+                            <option value="CMPE 242">CMPE 242</option>
+                            <option value="CMPE 243">CMPE 243</option>
+                            <option value="CMPE 244">CMPE 244</option>
+                            <option value="CMPE 245">CMPE 245</option>
+                            <option value="CMPE 249">CMPE 249</option>
+                            <option value="CMPE 250">CMPE 250</option>
+                            <option value="CMPE 251">CMPE 251</option>
+                            <option value="CMPE 252">CMPE 252</option>
+                            <option value="CMPE 255">CMPE 255</option>
+                            <option value="CMPE 256">CMPE 256</option>
+                            <option value="CMPE 257">CMPE 257</option>
+                            <option value="CMPE 258">CMPE 258</option>
+                            <option value="CMPE 260">CMPE 260</option>
+                            <option value="CMPE 261">CMPE 261</option>
+                            <option value="CMPE 262">CMPE 262</option>
+                            <option value="CMPE 264">CMPE 264</option>
+                            <option value="CMPE 265">CMPE 265</option>
+                            <option value="CMPE 266">CMPE 266</option>
+                            <option value="CMPE 270">CMPE 270</option>
+                            <option value="CMPE 271">CMPE 271</option>
+                            <option value="CMPE 272">CMPE 272</option>
+                            <option value="CMPE 273">CMPE 273</option>
+                            <option value="CMPE 274">CMPE 274</option>
+                            <option value="CMPE 275">CMPE 275</option>
+                            <option value="CMPE 276">CMPE 276</option>
+                            <option value="CMPE 277">CMPE 277</option>
+                            <option value="CMPE 278">CMPE 278</option>
+                            <option value="CMPE 279">CMPE 279</option>
+                            <option value="CMPE 281">CMPE 281</option>
+                            <option value="CMPE 282">CMPE 282</option>
+                            <option value="CMPE 283">CMPE 283</option>
+                            <option value="CMPE 284">CMPE 284</option>
+                            <option value="CMPE 285">CMPE 285</option>
+                            <option value="CMPE 286">CMPE 286</option>
+                            <option value="CMPE 287">CMPE 287</option>
+                            <option value="CMPE 290">CMPE 290</option>
+                            <option value="CMPE 294">CMPE 294</option>
+                            <option value="CMPE 295A">CMPE 295A</option>
+                            <option value="CMPE 295B">CMPE 295B</option>
+                            <option value="CMPE 297">CMPE 297</option>
+                            <option value="CMPE 298">CMPE 298</option>
+                            <option value="CMPE 299A">CMPE 299A</option>
+                            <option value="CMPE 299B">CMPE 299B</option>
+                            <option value="ENGR 200W">ENGR 200W</option>
+                            <option value="ISE 201">ISE 201</option>
+                            <option value="ISE 244">ISE 244</option>
+                        </select>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-block btn-dark" style="border-radius: 5rem; width: 200px; margin-left: 10rem; padding:0.75rem; margin-top: 0.7rem;">SUBMIT</button>
+                </form>
+            </div>
+        </div>
+
+
+
+        <!-- <div class="col-md-6" style="margin-top: 20px;">
+            <div class="card card-body">
+                <center><h3>Take Attendance</h3></center>
+                <hr/>
+                <form class="form-horizontal" action="{% url 'attendence' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="sel1">Select Branch:</label>
+                        <select name='branch' class="form-control" id="sel1">
+                            <option value="CMPE 200">CMPE 200</option>
+                            <option value="CMPE 202">CMPE 202</option>
+                            <option value="CMPE 203">CMPE 203</option>
+                            <option value="CMPE 206">CMPE 206</option>
+                            <option value="CMPE 207">CMPE 207</option>
+                            <option value="CMPE 208">CMPE 208</option>
+                            <option value="CMPE 209">CMPE 209</option>
+                            <option value="CMPE 212">CMPE 212</option>
+                            <option value="CMPE 213">CMPE 213</option>
+                            <option value="CMPE 214">CMPE 214</option>
+                            <option value="CMPE 217">CMPE 217</option>
+                            <option value="CMPE 219">CMPE 219</option>
+                            <option value="CMPE 220">CMPE 220</option>
+                            <option value="CMPE 221">CMPE 221</option>
+                            <option value="CMPE 225">CMPE 225</option>
+                            <option value="CMPE 226">CMPE 226</option>
+                            <option value="CMPE 227">CMPE 227</option>
+                            <option value="CMPE 232">CMPE 232</option>
+                            <option value="CMPE 234">CMPE 234</option>
+                            <option value="CMPE 235">CMPE 235</option>
+                            <option value="CMPE 236">CMPE 236</option>
+                            <option value="CMPE 237">CMPE 237</option>
+                            <option value="CMPE 238">CMPE 238</option>
+                            <option value="CMPE 239">CMPE 239</option>
+                            <option value="CMPE 240">CMPE 240</option>
+                            <option value="CMPE 241">CMPE 241</option>
+                            <option value="CMPE 242">CMPE 242</option>
+                            <option value="CMPE 243">CMPE 243</option>
+                            <option value="CMPE 244">CMPE 244</option>
+                            <option value="CMPE 245">CMPE 245</option>
+                            <option value="CMPE 249">CMPE 249</option>
+                            <option value="CMPE 250">CMPE 250</option>
+                            <option value="CMPE 251">CMPE 251</option>
+                            <option value="CMPE 252">CMPE 252</option>
+                            <option value="CMPE 255">CMPE 255</option>
+                            <option value="CMPE 256">CMPE 256</option>
+                            <option value="CMPE 257">CMPE 257</option>
+                            <option value="CMPE 258">CMPE 258</option>
+                            <option value="CMPE 260">CMPE 260</option>
+                            <option value="CMPE 261">CMPE 261</option>
+                            <option value="CMPE 262">CMPE 262</option>
+                            <option value="CMPE 264">CMPE 264</option>
+                            <option value="CMPE 265">CMPE 265</option>
+                            <option value="CMPE 266">CMPE 266</option>
+                            <option value="CMPE 270">CMPE 270</option>
+                            <option value="CMPE 271">CMPE 271</option>
+                            <option value="CMPE 272">CMPE 272</option>
+                            <option value="CMPE 273">CMPE 273</option>
+                            <option value="CMPE 274">CMPE 274</option>
+                            <option value="CMPE 275">CMPE 275</option>
+                            <option value="CMPE 276">CMPE 276</option>
+                            <option value="CMPE 277">CMPE 277</option>
+                            <option value="CMPE 278">CMPE 278</option>
+                            <option value="CMPE 279">CMPE 279</option>
+                            <option value="CMPE 281">CMPE 281</option>
+                            <option value="CMPE 282">CMPE 282</option>
+                            <option value="CMPE 283">CMPE 283</option>
+                            <option value="CMPE 284">CMPE 284</option>
+                            <option value="CMPE 285">CMPE 285</option>
+                            <option value="CMPE 286">CMPE 286</option>
+                            <option value="CMPE 287">CMPE 287</option>
+                            <option value="CMPE 290">CMPE 290</option>
+                            <option value="CMPE 294">CMPE 294</option>
+                            <option value="CMPE 295A">CMPE 295A</option>
+                            <option value="CMPE 295B">CMPE 295B</option>
+                            <option value="CMPE 297">CMPE 297</option>
+                            <option value="CMPE 298">CMPE 298</option>
+                            <option value="CMPE 299A">CMPE 299A</option>
+                            <option value="CMPE 299B">CMPE 299B</option>
+                            <option value="ENGR 200W">ENGR 200W</option>
+                            <option value="ISE 201">ISE 201</option>
+                            <option value="ISE 244">ISE 244</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="sel1">Select Section:</label>
+                        <select name='section' class="form-control" id="sel1">
+                            <option value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="sel1">Select Period:</label>
+                        <select name='period' class="form-control" id="sel1">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                        </select>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-block btn-dark" style="border-radius: 5rem; width: 200px; margin-left: 10rem; padding:0.75rem; margin-top: 0.7rem;">TAKE ATTENDANCE</button>
+                </form>
+            </div>
+        </div> -->
+
+    
+        
+
+    </div>
+
+    <div class="row">
+        
+
+        <div class="col-md-6" style="margin-top: 20px;">
+            <div class="card card-body" style="border-radius: 1rem; border-color: black; border-style: ridge; margin-bottom: 1rem;">
+                <center><h3>TAKE ATTENDANCE</h3></center>
+                <hr/>
+                <form class="form-horizontal" action="{% url 'attendence' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="sel1"><b>Select Course</b></label>
+                        <select name='branch' class="form-control" id="sel1">
+                            <option value="CMPE 200">CMPE 200</option>
+                            <option value="CMPE 202">CMPE 202</option>
+                            <option value="CMPE 203">CMPE 203</option>
+                            <option value="CMPE 206">CMPE 206</option>
+                            <option value="CMPE 207">CMPE 207</option>
+                            <option value="CMPE 208">CMPE 208</option>
+                            <option value="CMPE 209">CMPE 209</option>
+                            <option value="CMPE 212">CMPE 212</option>
+                            <option value="CMPE 213">CMPE 213</option>
+                            <option value="CMPE 214">CMPE 214</option>
+                            <option value="CMPE 217">CMPE 217</option>
+                            <option value="CMPE 219">CMPE 219</option>
+                            <option value="CMPE 220">CMPE 220</option>
+                            <option value="CMPE 221">CMPE 221</option>
+                            <option value="CMPE 225">CMPE 225</option>
+                            <option value="CMPE 226">CMPE 226</option>
+                            <option value="CMPE 227">CMPE 227</option>
+                            <option value="CMPE 232">CMPE 232</option>
+                            <option value="CMPE 234">CMPE 234</option>
+                            <option value="CMPE 235">CMPE 235</option>
+                            <option value="CMPE 236">CMPE 236</option>
+                            <option value="CMPE 237">CMPE 237</option>
+                            <option value="CMPE 238">CMPE 238</option>
+                            <option value="CMPE 239">CMPE 239</option>
+                            <option value="CMPE 240">CMPE 240</option>
+                            <option value="CMPE 241">CMPE 241</option>
+                            <option value="CMPE 242">CMPE 242</option>
+                            <option value="CMPE 243">CMPE 243</option>
+                            <option value="CMPE 244">CMPE 244</option>
+                            <option value="CMPE 245">CMPE 245</option>
+                            <option value="CMPE 249">CMPE 249</option>
+                            <option value="CMPE 250">CMPE 250</option>
+                            <option value="CMPE 251">CMPE 251</option>
+                            <option value="CMPE 252">CMPE 252</option>
+                            <option value="CMPE 255">CMPE 255</option>
+                            <option value="CMPE 256">CMPE 256</option>
+                            <option value="CMPE 257">CMPE 257</option>
+                            <option value="CMPE 258">CMPE 258</option>
+                            <option value="CMPE 260">CMPE 260</option>
+                            <option value="CMPE 261">CMPE 261</option>
+                            <option value="CMPE 262">CMPE 262</option>
+                            <option value="CMPE 264">CMPE 264</option>
+                            <option value="CMPE 265">CMPE 265</option>
+                            <option value="CMPE 266">CMPE 266</option>
+                            <option value="CMPE 270">CMPE 270</option>
+                            <option value="CMPE 271">CMPE 271</option>
+                            <option value="CMPE 272">CMPE 272</option>
+                            <option value="CMPE 273">CMPE 273</option>
+                            <option value="CMPE 274">CMPE 274</option>
+                            <option value="CMPE 275">CMPE 275</option>
+                            <option value="CMPE 276">CMPE 276</option>
+                            <option value="CMPE 277">CMPE 277</option>
+                            <option value="CMPE 278">CMPE 278</option>
+                            <option value="CMPE 279">CMPE 279</option>
+                            <option value="CMPE 281">CMPE 281</option>
+                            <option value="CMPE 282">CMPE 282</option>
+                            <option value="CMPE 283">CMPE 283</option>
+                            <option value="CMPE 284">CMPE 284</option>
+                            <option value="CMPE 285">CMPE 285</option>
+                            <option value="CMPE 286">CMPE 286</option>
+                            <option value="CMPE 287">CMPE 287</option>
+                            <option value="CMPE 290">CMPE 290</option>
+                            <option value="CMPE 294">CMPE 294</option>
+                            <option value="CMPE 295A">CMPE 295A</option>
+                            <option value="CMPE 295B">CMPE 295B</option>
+                            <option value="CMPE 297">CMPE 297</option>
+                            <option value="CMPE 298">CMPE 298</option>
+                            <option value="CMPE 299A">CMPE 299A</option>
+                            <option value="CMPE 299B">CMPE 299B</option>
+                            <option value="ENGR 200W">ENGR 200W</option>
+                            <option value="ISE 201">ISE 201</option>
+                            <option value="ISE 244">ISE 244</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="sel1"><b>Select Section</b></label>
+                        <select name='section' class="form-control" id="sel1">
+                            <option value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="sel1"><b>Select Period</b></label>
+                        <select name='period' class="form-control" id="sel1">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                        </select>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-block btn-dark" style="border-radius: 5rem; width: 200px; margin-left: 10rem; padding:0.75rem; margin-top: 0.7rem;">START</button>
+                </form>
+            </div>
+        </div>
+
+
+<!-- <div class="col-md-6" style="margin-top: 20px;">
+            <div class="card card-body">
+                <center><h3>Update Student Details</h3></center>
+                <hr/>
+                <form class="form-horizontal" action="{% url 'updateStudentRedirect' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label class="control-label">Enter Student Registration ID:</label>
+                        <input name="reg_id" type="text" class="form-control" placeholder="Ex: 18341A1234">
+                    </div>
+                    <div class="form-group">
+                        <label for="sel1">Select Branch:</label>
+                        <select name='branch' class="form-control" id="sel1">
+                            <option value="CMPE 200">CMPE 200</option>
+                            <option value="CMPE 202">CMPE 202</option>
+                            <option value="CMPE 203">CMPE 203</option>
+                            <option value="CMPE 206">CMPE 206</option>
+                            <option value="CMPE 207">CMPE 207</option>
+                            <option value="CMPE 208">CMPE 208</option>
+                            <option value="CMPE 209">CMPE 209</option>
+                            <option value="CMPE 212">CMPE 212</option>
+                            <option value="CMPE 213">CMPE 213</option>
+                            <option value="CMPE 214">CMPE 214</option>
+                            <option value="CMPE 217">CMPE 217</option>
+                            <option value="CMPE 219">CMPE 219</option>
+                            <option value="CMPE 220">CMPE 220</option>
+                            <option value="CMPE 221">CMPE 221</option>
+                            <option value="CMPE 225">CMPE 225</option>
+                            <option value="CMPE 226">CMPE 226</option>
+                            <option value="CMPE 227">CMPE 227</option>
+                            <option value="CMPE 232">CMPE 232</option>
+                            <option value="CMPE 234">CMPE 234</option>
+                            <option value="CMPE 235">CMPE 235</option>
+                            <option value="CMPE 236">CMPE 236</option>
+                            <option value="CMPE 237">CMPE 237</option>
+                            <option value="CMPE 238">CMPE 238</option>
+                            <option value="CMPE 239">CMPE 239</option>
+                            <option value="CMPE 240">CMPE 240</option>
+                            <option value="CMPE 241">CMPE 241</option>
+                            <option value="CMPE 242">CMPE 242</option>
+                            <option value="CMPE 243">CMPE 243</option>
+                            <option value="CMPE 244">CMPE 244</option>
+                            <option value="CMPE 245">CMPE 245</option>
+                            <option value="CMPE 249">CMPE 249</option>
+                            <option value="CMPE 250">CMPE 250</option>
+                            <option value="CMPE 251">CMPE 251</option>
+                            <option value="CMPE 252">CMPE 252</option>
+                            <option value="CMPE 255">CMPE 255</option>
+                            <option value="CMPE 256">CMPE 256</option>
+                            <option value="CMPE 257">CMPE 257</option>
+                            <option value="CMPE 258">CMPE 258</option>
+                            <option value="CMPE 260">CMPE 260</option>
+                            <option value="CMPE 261">CMPE 261</option>
+                            <option value="CMPE 262">CMPE 262</option>
+                            <option value="CMPE 264">CMPE 264</option>
+                            <option value="CMPE 265">CMPE 265</option>
+                            <option value="CMPE 266">CMPE 266</option>
+                            <option value="CMPE 270">CMPE 270</option>
+                            <option value="CMPE 271">CMPE 271</option>
+                            <option value="CMPE 272">CMPE 272</option>
+                            <option value="CMPE 273">CMPE 273</option>
+                            <option value="CMPE 274">CMPE 274</option>
+                            <option value="CMPE 275">CMPE 275</option>
+                            <option value="CMPE 276">CMPE 276</option>
+                            <option value="CMPE 277">CMPE 277</option>
+                            <option value="CMPE 278">CMPE 278</option>
+                            <option value="CMPE 279">CMPE 279</option>
+                            <option value="CMPE 281">CMPE 281</option>
+                            <option value="CMPE 282">CMPE 282</option>
+                            <option value="CMPE 283">CMPE 283</option>
+                            <option value="CMPE 284">CMPE 284</option>
+                            <option value="CMPE 285">CMPE 285</option>
+                            <option value="CMPE 286">CMPE 286</option>
+                            <option value="CMPE 287">CMPE 287</option>
+                            <option value="CMPE 290">CMPE 290</option>
+                            <option value="CMPE 294">CMPE 294</option>
+                            <option value="CMPE 295A">CMPE 295A</option>
+                            <option value="CMPE 295B">CMPE 295B</option>
+                            <option value="CMPE 297">CMPE 297</option>
+                            <option value="CMPE 298">CMPE 298</option>
+                            <option value="CMPE 299A">CMPE 299A</option>
+                            <option value="CMPE 299B">CMPE 299B</option>
+                            <option value="ENGR 200W">ENGR 200W</option>
+                            <option value="ISE 201">ISE 201</option>
+                            <option value="ISE 244">ISE 244</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-block btn-dark" style="border-radius: 5rem; width: 200px; margin-left: 10rem; padding:0.75rem; margin-top: 0.7rem;">SUBMIT</button>
+                </form>
+            </div>
+        </div> -->
+
+
+        <div class="col-md-6" style="margin-top: 20px;;">
+            <div class="card card-body" style="border-radius: 1rem; border-color: black; border-style: ridge;">
+                <center><h3>VIEW ATTENDANCE</h3></center>
+                <hr/> 
+                    <a href="{% url 'searchattendence' %}" class="btn btn-block btn-dark" style="border-radius: 5rem; width: 200px; margin-left: 10rem; padding:0.75rem; margin-top: 0.7rem;">VIEW</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
