@@ -19,7 +19,7 @@
 	<div class="col-md-5">
 		<div class="card card-body">
 			
-			<form method="POST" action="" enctype="multipart/form-data">
+			<form method="POST" action="{% url 'updateFaculty' %}" enctype="multipart/form-data">
 				{% csrf_token %}
 				{{form.as_p}}
 		

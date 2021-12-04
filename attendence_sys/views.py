@@ -144,3 +144,21 @@ def facultyProfile(request):
     form = FacultyForm(instance = faculty)
     context = {'form':form}
     return render(request, 'facultyForm.html', context)
+
+
+def updateFaculty(request):
+    if request.method == 'POST':
+        context = {}
+        try:
+            print(request.POST)
+            faculty = Faculty.objects.get(email = request.POST['email'])
+            print(faculty.firstname)
+            updateFacultyForm = FacultyForm(data = request.POST, files=request.FILES, instance = faculty)
+            if updateFacultyForm.is_valid():
+                updateFacultyForm.save()
+                messages.success(request, 'Updated successfully')
+                return redirect('home')
+        except:
+            messages.error(request, 'Updation Unsucessfull')
+            return redirect('home')
+    return render(request, 'facultyForm.html', context)
