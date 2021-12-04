@@ -47,7 +47,7 @@ def loginPage(request):
             login(request, user)
             return redirect('home')
         else:
-            messages.info(request, 'Username or Password is incorrect')
+            messages.info(request, 'Invalid credentials')
 
     context = {}
     return render(request, 'login.html', context)
@@ -83,7 +83,7 @@ def updateStudent(request):
             updateStudentForm = CreateStudentForm(data = request.POST, files=request.FILES, instance = student)
             if updateStudentForm.is_valid():
                 updateStudentForm.save()
-                messages.success(request, 'Updation Success')
+                messages.success(request, 'Updated successfully')
                 return redirect('home')
         except:
             messages.error(request, 'Updation Unsucessfull')
@@ -126,7 +126,7 @@ def takeAttendence(request):
                     attendence.save()
             attendences = Attendence.objects.filter(date = str(date.today()),branch = details['branch'], section = details['section'],period = details['period'])
             context = {"attendences":attendences, "ta":True}
-            messages.success(request, "Attendence taking Success")
+            messages.success(request, "Attendance recorded successfully")
             return render(request, 'attendance.html', context)        
     context = {}
     return render(request, 'home.html', context)
