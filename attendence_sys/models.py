@@ -16,6 +16,7 @@ class Faculty(models.Model):
     lastname = models.CharField('Last Name', max_length=200, null=True, blank=True)
     phone = models.CharField('Phone Number', max_length=200, null=True)
     email = models.CharField('Email Address', max_length=200, null=True)
+    # att_duration = models.IntegerField('Attendance Time', null=True)
     profile_pic = models.ImageField('Profile Picture', upload_to=user_directory_path ,null=True, blank=True)
 
     def __str__(self):

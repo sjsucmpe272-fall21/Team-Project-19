@@ -2,7 +2,7 @@ import face_recognition
 import numpy as np
 import cv2
 import os
-
+from .email_attach import send_email
 
 def Recognizer(details):
 	video = cv2.VideoCapture(0)
@@ -86,6 +86,9 @@ def Recognizer(details):
 		cv2.imshow("Face Recognition Panel",frame)
 
 		if cv2.waitKey(1) == ord('s'):
+			# dt = Student.objects.get(registration_id = int(names[0]))
+			# print(dt.firstname, dt.lastname)
+			send_email(details['faculty'].email, names)
 			break
 
 	video.release()
