@@ -10,7 +10,8 @@ def send_email(to, names):
 
     info = [["ID", "First Name", "Last Name"]]
     for id in names:
-        st = Student.objects.get(registration_id = int(id))
+        print(id)
+        st = Student.objects.get(registration_id = id)
         info.append([id,st.firstname,st.lastname])
         
     print(info)
